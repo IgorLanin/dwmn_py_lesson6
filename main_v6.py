@@ -1,0 +1,46 @@
+password = input("Введите пароль: ")
+
+
+def is_very_long(password):
+    if len(password) > 12:
+        return True
+    else:
+        return False
+
+
+def has_digit(password):
+    return any(digit.isdigit() for digit in password)
+
+
+def has_upper_letters(password):
+    return any(letter.isalpha() and letter.isupper() for letter in password)
+
+
+def has_lower_letters(password):
+    return any(letter.isalpha() and letter.islower() for letter in password)
+
+
+def has_symbols(password):
+    return any(not letter.isdigit() and not letter.isalpha() for letter in password)
+
+
+def password_score(password):
+    score = 0
+
+    checking_conditions = [
+        is_very_long(password),
+        has_digit(password),
+        has_upper_letters(password),
+        has_lower_letters(password),
+        has_symbols(password)
+        ]
+
+    for check in checking_conditions:
+        if check:
+            score += 2
+
+    print("Рейтинг пароля: ", score)
+
+
+if __name__ == '__main__':
+    password_score(password)
